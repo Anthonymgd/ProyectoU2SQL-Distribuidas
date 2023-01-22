@@ -23,22 +23,20 @@ public class Animal {
     @NotNull
     String edad;
 
-    @OneToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST})
-    @Column(name = "raza_id")
-    Raza razaId = new Raza();
-
     @Column(name = "potrero_id")
     Long potreroId;
 
+    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "raza_id", referencedColumnName = "id")
+    Raza razaId = new Raza();
     @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_animales", referencedColumnName = "id")
     Set<Alimentacion> alimentacion = new HashSet<>();
 
-    public Animal(Long id, Character genero, String edad, Raza razaId, Long potreroId, Set<Alimentacion> alimentacion) {
+    public Animal(Long id, Character genero, String edad, Long potreroId, Set<Alimentacion> alimentacion) {
         this.id = id;
         this.genero = genero;
         this.edad = edad;
-        this.razaId = razaId;
         this.potreroId = potreroId;
         this.alimentacion = alimentacion;
     }

@@ -27,7 +27,7 @@ public class Potrero {
     @NotNull
     String tipo_suelo;
 
-    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @OneToMany(cascade =  {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @JoinColumn(name = "potrero_id", referencedColumnName = "id")
     Set<Animal> animal = new HashSet<>();
 

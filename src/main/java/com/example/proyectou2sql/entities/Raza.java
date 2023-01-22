@@ -1,10 +1,13 @@
 package com.example.proyectou2sql.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "raza")
@@ -19,13 +22,14 @@ public class Raza {
     @NotNull
     String nombre_raza;
 
-    @Column(name = "raza_id")
-    Long razaId;
+    @JsonIgnore
+    @OneToMany(mappedBy = "razaId")
+    Set<Animal> animales = new HashSet<>();
 
-    public Raza(Long id, String nombre_raza, Long razaId) {
+    public Raza(Long id, String nombre_raza, Set<Animal> animales) {
         this.id = id;
         this.nombre_raza = nombre_raza;
-        this.razaId = razaId;
+        this.animales = animales;
     }
 
     public Raza() {
