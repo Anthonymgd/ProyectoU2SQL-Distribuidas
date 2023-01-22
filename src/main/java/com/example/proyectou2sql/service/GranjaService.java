@@ -1,7 +1,7 @@
-package com.example.proyectou2.service;
+package com.example.proyectou2sql.service;
 
-import com.example.proyectou2.entities.Granja;
-import com.example.proyectou2.repo.GranjaRepo;
+import com.example.proyectou2sql.entities.Granja;
+import com.example.proyectou2sql.repo.GranjaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
